@@ -1,0 +1,22 @@
+{
+  "name": "mymusicalpicture",
+  "version": "1.0.0",
+  "description": "Um site que faz imagens baseadas no histórico musical de quem o visita",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naymello/my-musical-picure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naymello/my-musical-picure/issues"
+  },
+  "homepage": "https://github.com/naymello/my-musical-picure#readme",
+  "dependencies": {
+    "spotify-web-api-js": "^1.2.0"
+  }
+}
