@@ -1,6 +1,6 @@
 import './style.scss'
 
-let accessToken = 'BQCHElAopeFD2XZIcaKAREjMFX5IKO5ZCbU6FcBBUzor4S-lwswieiTtvQLTUfcGd3hyWgtQ9tIhdPT8W_ve99U7sKljOsppg4jdmC-D4mtshhqIoGrni3z-L7FhEW4IWqcdYi4QAqd0Zr8mVWt0lhjD9o0QWtD7ub9zpjzPm3mnv5dWiZw5eaQPI8lyTIUSoCteD51TvJfozEW8-A3p2Il2CWntqhrzEDc9tNCUucCoDKGAJaSkaS9P4KStf_ovpw6KI4s'
+let accessToken = 'BQAZJ944gZah780jHyUJHc4TxZShfDaZLS_9-CcaelQHXeBTEk2lSNu0E1mH2LX0LSsc4yM951mcP6Z-xJ2rztYt_e7BPMtAPkXKNtwPrM4K-EdNHQ49u_mHtNaJYPm91vpgsVnAgcNd6bUXne6os5AXNtjszNu8esdDOVvsQewMd0DvRfC2yUOzRKyryhcyIrXLV5zWsyEjSD85VimhUuW9CiWFKpVyvRIbDjSHuA2LTpimxF8E--mTWxaS-0nDWtuUovo'
 
 //Pega dados na API do Spotify
 const getData = async (type, timeRange, limit, offset) => {
@@ -21,8 +21,8 @@ const getUserTop = async (type, timeRange) => {
 }
 
 //Pega os albums favoritos do usuário
-// (com duas requisições à API em favor da precisão dos dados, já que a API não apresenta um endpoint 
-// próprio para pegar os dados de albuns favoritos)
+//(com duas requisições à API no endpoint de "top tracks", já que a API não apresenta um endpoint 
+//próprio para pegar os dados de albuns favoritos)
 const getUserTopAlbums = async (timeRange) => {
 	let res1 = await getData('tracks', timeRange, 45, 0)
 	let res2 = await getData('tracks', timeRange, 45, 45)
@@ -30,23 +30,46 @@ const getUserTopAlbums = async (timeRange) => {
 	let data1 = await res1.json()
 	let data2 = await res2.json()
 
-	let items = data1.items.concat(data2.items); //Junta o resutado de dois fetchs em uma só array
+	let tracks = data1.items.concat(data2.items); //Junta o resutado de dois fetchs em uma só array
 
-	let albums = []
-	for (let i = 0; i < items.length; i++) {
-		albums[i] = items[i].album.name
+	let albumNames = []
+	for (let i = 0; i < tracks.length; i++) { //Coloca todos os albums em uma array, 
+		albumNames[i] = tracks[i].album.name
 	}
 
-	getRepetedAlbums(albums)
+	let repeatedAlbums = getRepetedAlbums(albumNames)
+	let sortedAlbums = sortByMostListened(repeatedAlbums)
+
+	console.log(sortedAlbums)
+
+	albumNames = [... new Set(albumNames)] //Elimina os albums repetidos da array após já ter feito a contagem destes
 }
 
-//Conta, na array de albums, quantas vezes cada um aparece
+//TODO: Não transformar em objeto para depois voltar para array
+
+//Conta, na array de albums, quantas vezes cada um aparece e coloca o valor em um objeto
 const getRepetedAlbums = (arr) => {
-	let acc = arr.reduce((acc, val) => acc.set(val, 1 + (acc.get(val) || 0)), new Map());
-	console.log(acc);
+	let countedObj = arr.reduce((acc, curr) => {
+		acc[curr] = ++acc[curr] || 1
+		return acc
+	}, {})
+
+	return countedObj
 }
 
-getUserTopAlbums('short')
+//Transforma de volta em uma array e organiza esta em ordem decrescente, comparando o número de ocorrência de cada album
+const sortByMostListened = (obj) => {
+	const compare = (a, b) => {
+		return b[1] - a[1]
+	}
+
+	let objIntoArr = Object.entries(obj)
+	let sortedArr = objIntoArr.sort(compare)
+
+	return sortedArr
+}
+
+getUserTopAlbums('medium')
 
 //Mostra as imagens dos artistas ou músicas
 const showImages = async (type, timeRange) => {
