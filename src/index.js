@@ -1,6 +1,6 @@
 import './style.scss'
 
-let accessToken = 'BQAZJ944gZah780jHyUJHc4TxZShfDaZLS_9-CcaelQHXeBTEk2lSNu0E1mH2LX0LSsc4yM951mcP6Z-xJ2rztYt_e7BPMtAPkXKNtwPrM4K-EdNHQ49u_mHtNaJYPm91vpgsVnAgcNd6bUXne6os5AXNtjszNu8esdDOVvsQewMd0DvRfC2yUOzRKyryhcyIrXLV5zWsyEjSD85VimhUuW9CiWFKpVyvRIbDjSHuA2LTpimxF8E--mTWxaS-0nDWtuUovo'
+let accessToken = 'BQAbtYzwyStx0bf-xzIWUkV7qc_ydZw5wWxGXsCrEHbnL7ZXpGSGsXI2DdklBV-BZMESOK83Qk-j_CE1aymd3x30cDvYL0cdRatWRTMEh90q0315OUiePIRSA33RWjCzT-d9WlGPp8ljCkIE4Vmg2K9kQGndfUCYTDmtHM6puKjm4WLqxFhB_fE37_8DJiczfIYYceXAbDu_6qSLgrPc4wNqiRjiZghgjkWBv9SBc1rRL4Rsno5X36h24a3TB5HDPEGzJDI'
 
 //Pega dados na API do Spotify
 const getData = async (type, timeRange, limit, offset) => {
@@ -32,23 +32,26 @@ const getUserTopAlbums = async (timeRange) => {
 
 	let tracks = data1.items.concat(data2.items); //Junta o resutado de dois fetchs em uma só array
 
-	let albumNames = []
-	for (let i = 0; i < tracks.length; i++) { //Coloca todos os albums em uma array, 
+	let albums = [] //Objetos completos
+	let albumNames = [] //Apenas os nomes
+
+	for (let i = 0; i < tracks.length; i++) { //Coloca todos os albums em uma array,
+		albums[i] = tracks[i].album
 		albumNames[i] = tracks[i].album.name
 	}
 
-	let repeatedAlbums = getRepetedAlbums(albumNames)
+	let repeatedAlbums = countRepetedAlbums(albumNames)
 	let sortedAlbums = sortByMostListened(repeatedAlbums)
-
 	console.log(sortedAlbums)
 
-	albumNames = [... new Set(albumNames)] //Elimina os albums repetidos da array após já ter feito a contagem destes
+	albums = removeDuplicates(albums)
+	console.log(albums)
 }
 
 //TODO: Não transformar em objeto para depois voltar para array
 
 //Conta, na array de albums, quantas vezes cada um aparece e coloca o valor em um objeto
-const getRepetedAlbums = (arr) => {
+const countRepetedAlbums = (arr) => {
 	let countedObj = arr.reduce((acc, curr) => {
 		acc[curr] = ++acc[curr] || 1
 		return acc
@@ -69,7 +72,19 @@ const sortByMostListened = (obj) => {
 	return sortedArr
 }
 
-getUserTopAlbums('medium')
+const removeDuplicates = (arr) => {
+	let uniqueList = new Set()
+	uniqueList = arr.filter(item => {
+		if (!uniqueList.has(item['id'])) {
+			uniqueList.add(item['id'])
+			return true
+		}
+	})
+
+	return uniqueList
+}
+
+getUserTopAlbums('short')
 
 //Mostra as imagens dos artistas ou músicas
 const showImages = async (type, timeRange) => {
