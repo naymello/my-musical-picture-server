@@ -1,6 +1,6 @@
 import './style.scss'
 
-let accessToken = 'BQAbtYzwyStx0bf-xzIWUkV7qc_ydZw5wWxGXsCrEHbnL7ZXpGSGsXI2DdklBV-BZMESOK83Qk-j_CE1aymd3x30cDvYL0cdRatWRTMEh90q0315OUiePIRSA33RWjCzT-d9WlGPp8ljCkIE4Vmg2K9kQGndfUCYTDmtHM6puKjm4WLqxFhB_fE37_8DJiczfIYYceXAbDu_6qSLgrPc4wNqiRjiZghgjkWBv9SBc1rRL4Rsno5X36h24a3TB5HDPEGzJDI'
+let accessToken = 'BQAsrI48PXsIqTnWY-PaFlTkiV3FVgBwhfII9_xg-Z4Df7-mx5IvLjoNrzk9H3OHFVqZeH77OwChH7810LYGo0eQj46KocHWz9tjGdIcxWGnHbMLzkf5q44CYJr-Zgyvu6_2Rn58KDODXm-pXd-voFU_-IyS2g-PpppOfBQBsOgH4vWjvLpd5F1kcqxsdSDUpy9SXp828piRVIAVk47iS4SNa2OJXJkZH15iCdm8XzTZua2zaBfpzzoWFXXSwMeF1TKj9vs'
 
 //Pega dados na API do Spotify
 const getData = async (type, timeRange, limit, offset) => {
@@ -30,61 +30,46 @@ const getUserTopAlbums = async (timeRange) => {
 	let data1 = await res1.json()
 	let data2 = await res2.json()
 
-	let tracks = data1.items.concat(data2.items); //Junta o resutado de dois fetchs em uma só array
+	let tracks = data1.items.concat(data2.items); //Junta o resutado de dois fetchs de tracks em uma só array
 
-	let albums = [] //Objetos completos
-	let albumNames = [] //Apenas os nomes
+	let albums = []
 
-	for (let i = 0; i < tracks.length; i++) { //Coloca todos os albums em uma array,
+	for (let i = 0; i < tracks.length; i++) { //Coloca todos os albums das tracks em uma array
 		albums[i] = tracks[i].album
-		albumNames[i] = tracks[i].album.name
 	}
 
-	let repeatedAlbums = countRepetedAlbums(albumNames)
-	let sortedAlbums = sortByMostListened(repeatedAlbums)
-	console.log(sortedAlbums)
+	let countedAlbums = countOccurrence(albums)
+	let sortedAlbums = sortByMostListened(countedAlbums)
 
-	albums = removeDuplicates(albums)
-	console.log(albums)
-}
-
-//TODO: Não transformar em objeto para depois voltar para array
-
-//Conta, na array de albums, quantas vezes cada um aparece e coloca o valor em um objeto
-const countRepetedAlbums = (arr) => {
-	let countedObj = arr.reduce((acc, curr) => {
-		acc[curr] = ++acc[curr] || 1
-		return acc
-	}, {})
-
-	return countedObj
+	return sortedAlbums
 }
 
 //Transforma de volta em uma array e organiza esta em ordem decrescente, comparando o número de ocorrência de cada album
-const sortByMostListened = (obj) => {
+const sortByMostListened = (arr) => {
+	//Regra que de organização que será usada no .sort()
 	const compare = (a, b) => {
-		return b[1] - a[1]
+		return b.occurrence - a.occurrence
 	}
 
-	let objIntoArr = Object.entries(obj)
-	let sortedArr = objIntoArr.sort(compare)
+	let sortedArr = arr.sort(compare)
 
 	return sortedArr
 }
 
-const removeDuplicates = (arr) => {
-	let uniqueList = new Set()
-	uniqueList = arr.filter(item => {
-		if (!uniqueList.has(item['id'])) {
-			uniqueList.add(item['id'])
-			return true
+//Remove objetos duplicados dentro das arrays retornadas da API do Spotify
+const countOccurrence = (arr) => {
+	let uniqueArray = [],
+		hashTable = {}
+
+	arr.forEach(item => {
+		if (!hashTable[item.id]) {
+			uniqueArray.push(hashTable[item.id] = { ...item, occurrence: 0 });
 		}
-	})
+		hashTable[item.id].occurrence++;
+	});
 
-	return uniqueList
+	return uniqueArray;
 }
-
-getUserTopAlbums('short')
 
 //Mostra as imagens dos artistas ou músicas
 const showImages = async (type, timeRange) => {
@@ -102,4 +87,12 @@ const showImages = async (type, timeRange) => {
 	}
 }
 
-showImages('tracks', 'short')
+const showAlbumImages = async (timeRange) => {
+	const data = await getUserTopAlbums(timeRange)
+
+	for (let i = 0; i < 13; i++) {
+		document.getElementById(`img-${i}`).src = await data[i].images[0].url
+	}
+}
+
+showAlbumImages('long')
