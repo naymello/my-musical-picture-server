@@ -1,6 +1,7 @@
 import './style.scss'
 
-let accessToken = 'BQBVhPrO3vfhJWj0xdV8G99_8KORMhdyXXt9RIUGZEu_MTbord75VY6mlq1i6SgxpG29j6ZsIJhsQgXiT11yXX-fBhkuTiXni499E8uQ3pU_mJp73ghzqPfdxNq0TklVjLQ8uA46fcaWHjD_DXhvZyekYBtsWViPmnTQ-iBqjYPWHD1bc-kbf-8M3Mt6z_Fju_Hj84lHtMOrf0j79PZlma5nDeQDmCmDMfqXL6wNhn_ZNiIMEPX8Lyxgggj8P1MzRpNPXAY'
+let url = window.location
+let accessToken = new URLSearchParams(url.search).get('access_token')
 
 //Pega dados na API do Spotify
 const getData = async (type, timeRange, limit, offset) => {
@@ -58,8 +59,8 @@ const sortByMostListened = (arr) => {
 
 //Remove objetos duplicados dentro das arrays retornadas da API do Spotify
 const countOccurrence = (arr) => {
-	let uniqueArray = [],
-		hashTable = {}
+	let uniqueArray = []
+	let hashTable = {}
 
 	arr.forEach(item => {
 		if (!hashTable[item.id]) {
