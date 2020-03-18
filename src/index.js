@@ -1,6 +1,6 @@
 import './style.scss'
 
-let accessToken = 'BQAsrI48PXsIqTnWY-PaFlTkiV3FVgBwhfII9_xg-Z4Df7-mx5IvLjoNrzk9H3OHFVqZeH77OwChH7810LYGo0eQj46KocHWz9tjGdIcxWGnHbMLzkf5q44CYJr-Zgyvu6_2Rn58KDODXm-pXd-voFU_-IyS2g-PpppOfBQBsOgH4vWjvLpd5F1kcqxsdSDUpy9SXp828piRVIAVk47iS4SNa2OJXJkZH15iCdm8XzTZua2zaBfpzzoWFXXSwMeF1TKj9vs'
+let accessToken = 'BQBVhPrO3vfhJWj0xdV8G99_8KORMhdyXXt9RIUGZEu_MTbord75VY6mlq1i6SgxpG29j6ZsIJhsQgXiT11yXX-fBhkuTiXni499E8uQ3pU_mJp73ghzqPfdxNq0TklVjLQ8uA46fcaWHjD_DXhvZyekYBtsWViPmnTQ-iBqjYPWHD1bc-kbf-8M3Mt6z_Fju_Hj84lHtMOrf0j79PZlma5nDeQDmCmDMfqXL6wNhn_ZNiIMEPX8Lyxgggj8P1MzRpNPXAY'
 
 //Pega dados na API do Spotify
 const getData = async (type, timeRange, limit, offset) => {
@@ -34,14 +34,14 @@ const getUserTopAlbums = async (timeRange) => {
 
 	let albums = []
 
-	for (let i = 0; i < tracks.length; i++) { //Coloca todos os albums das tracks em uma array
+	for (let i in tracks) { //Coloca todos os albums das tracks em uma array
 		albums[i] = tracks[i].album
 	}
 
 	let countedAlbums = countOccurrence(albums)
 	let sortedAlbums = sortByMostListened(countedAlbums)
 
-	return sortedAlbums
+	return sortedAlbums.slice(0, 13) //Retorna apenas os 13 albums mais ouvidos, que serão mostrados na tela
 }
 
 //Transforma de volta em uma array e organiza esta em ordem decrescente, comparando o número de ocorrência de cada album
@@ -76,23 +76,23 @@ const showImages = async (type, timeRange) => {
 	const data = await getUserTop(type, timeRange)
 
 	if (type === 'artists') {
-		for (let i = 0; i < data.length; i++) {
-			document.getElementById(`img-${i}`).src = await data[i].images[0].url
-		}
+		data.forEach(async (curr, i) => {
+			document.getElementById(`img-${i}`).src = await curr.images[0].url
+		})
 	}
 	else if (type === 'tracks') {
-		for (let i = 0; i < data.length; i++) {
-			document.getElementById(`img-${i}`).src = await data[i].album.images[0].url
-		}
+		data.forEach(async (curr, i) => {
+			document.getElementById(`img-${i}`).src = await curr.album.images[0].url
+		})
 	}
 }
 
 const showAlbumImages = async (timeRange) => {
 	const data = await getUserTopAlbums(timeRange)
 
-	for (let i = 0; i < 13; i++) {
-		document.getElementById(`img-${i}`).src = await data[i].images[0].url
-	}
+	data.forEach(async (curr, i) => {
+		document.getElementById(`img-${i}`).src = await curr.images[0].url
+	})
 }
 
 showAlbumImages('long')
