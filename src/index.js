@@ -16,7 +16,7 @@ const getData = async (type, timeRange, limit, offset) => {
 
 //Pega os artistas ou músicas favoritas do usuário
 const getUserTop = async (type, timeRange) => {
-	let res = await getData(type, timeRange, 13, 0)
+	let res = await getData(type, timeRange, 10, 0)
 	let data = await res.json()
 	return data.items
 }
@@ -42,7 +42,7 @@ const getUserTopAlbums = async (timeRange) => {
 	let countedAlbums = countOccurrence(albums)
 	let sortedAlbums = sortByMostListened(countedAlbums)
 
-	return sortedAlbums.slice(0, 13) //Retorna apenas os 13 albums mais ouvidos, que serão mostrados na tela
+	return sortedAlbums.slice(0, 10) //Retorna apenas os 10 albums mais ouvidos, que serão mostrados na tela
 }
 
 //Transforma de volta em uma array e organiza esta em ordem decrescente, comparando o número de ocorrência de cada album
