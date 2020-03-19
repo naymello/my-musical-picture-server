@@ -64,9 +64,9 @@ const countOccurrence = (arr) => {
 
 	arr.forEach(item => {
 		if (!hashTable[item.id]) {
-			uniqueArray.push(hashTable[item.id] = { ...item, occurrence: 0 });
+			uniqueArray.push(hashTable[item.id] = { ...item, occurrence: 0 })
 		}
-		hashTable[item.id].occurrence++;
+		hashTable[item.id].occurrence++
 	});
 
 	return uniqueArray;
