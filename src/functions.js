@@ -1,5 +1,3 @@
-import './style.scss'
-
 let url = window.location
 let accessToken = new URLSearchParams(url.search).get('access_token')
 
@@ -73,23 +71,24 @@ const countOccurrence = (arr) => {
 }
 
 //Mostra as imagens dos artistas, albums ou músicas
-const showImages = async (type, timeRange) => {
+export const showImages = async (type, timeRange) => {
 
 	//Albums não tem um endpoint próprio, portanto seus dados são pegos atravéz de uma função própria getUserTopAlbums
-	if (!type === 'albums') {
+	if (!(type === 'albums')) {
 		const data = await getUserTop(type, timeRange)
+
+		if (type === 'artists') {
+			data.forEach(async (curr, i) => {
+				document.getElementById(`img-${i}`).src = await curr.images[0].url
+			})
+		}
+		else if (type === 'tracks') {
+			data.forEach(async (curr, i) => {
+				document.getElementById(`img-${i}`).src = await curr.album.images[0].url
+			})
+		}
 	}
 
-	if (type === 'artists') {
-		data.forEach(async (curr, i) => {
-			document.getElementById(`img-${i}`).src = await curr.images[0].url
-		})
-	}
-	else if (type === 'tracks') {
-		data.forEach(async (curr, i) => {
-			document.getElementById(`img-${i}`).src = await curr.album.images[0].url
-		})
-	}
 	else if (type === 'albums') {
 		const data = await getUserTopAlbums(timeRange)
 

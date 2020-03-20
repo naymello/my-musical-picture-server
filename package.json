@@ -2,7 +2,7 @@
   "name": "mymusicalpicture",
   "version": "1.0.0",
   "description": "Um site que faz imagens baseadas no histórico musical de quem o visita",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "webpack --config webpack.config.js"
   },
