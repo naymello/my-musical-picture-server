@@ -72,9 +72,13 @@ const countOccurrence = (arr) => {
 	return uniqueArray;
 }
 
-//Mostra as imagens dos artistas ou músicas
+//Mostra as imagens dos artistas, albums ou músicas
 const showImages = async (type, timeRange) => {
-	const data = await getUserTop(type, timeRange)
+
+	//Albums não tem um endpoint próprio, portanto seus dados são pegos atravéz de uma função própria getUserTopAlbums
+	if (!type === 'albums') {
+		const data = await getUserTop(type, timeRange)
+	}
 
 	if (type === 'artists') {
 		data.forEach(async (curr, i) => {
@@ -86,14 +90,11 @@ const showImages = async (type, timeRange) => {
 			document.getElementById(`img-${i}`).src = await curr.album.images[0].url
 		})
 	}
+	else if (type === 'albums') {
+		const data = await getUserTopAlbums(timeRange)
+
+		data.forEach(async (curr, i) => {
+			document.getElementById(`img-${i}`).src = await curr.images[0].url
+		})
+	}
 }
-
-const showAlbumImages = async (timeRange) => {
-	const data = await getUserTopAlbums(timeRange)
-
-	data.forEach(async (curr, i) => {
-		document.getElementById(`img-${i}`).src = await curr.images[0].url
-	})
-}
-
-showAlbumImages('long')
