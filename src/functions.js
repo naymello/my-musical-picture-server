@@ -89,7 +89,7 @@ export const showImages = async (type, data) => {
 	}
 }
 
-const showText = async (type, timeRange, firstName, data) => {
+export const showText = async (type, timeRange, firstName, data) => {
 	//Título
 	document.getElementById('name').innerHTML = `${firstName}'s `
 
