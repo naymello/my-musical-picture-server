@@ -70,6 +70,8 @@ const countOccurrence = (arr) => {
 	return uniqueArray;
 }
 
+//TODO: DRY
+
 //Mostra as imagens dos artistas, albuns ou músicas
 export const showImages = async (type, data) => {
 	if (type === 'tracks') {
@@ -126,4 +128,39 @@ export const showText = async (type, timeRange, firstName, data) => {
 
 	//Outros...
 	document.getElementById('others').innerHTML = `Other ${type}`
+}
+
+export const setTheme = (theme) => {
+	//O tema claro (light) já é o padrão dentro do styles.scss, então não são necessárias mudanças
+	if (!(theme === 'light')) {
+		let textColor = ''
+		let textBgColor = ''
+		let bodyBgColor = ''
+
+		if (theme === 'dark') {
+			textColor = '#FFFFFF'
+			textBgColor = '#DC1F1F'
+			bodyBgColor = '#000000'
+		}
+		else if (theme === 'colored') {
+			textColor = '#F9FF3E'
+			textBgColor = '#FF10A0'
+			bodyBgColor = '#2929B1'
+		}
+
+		document.body.style.backgroundColor = bodyBgColor
+
+		const spanElements = document.getElementsByTagName('span')
+		const bgColoredElements = document.getElementsByClassName('bg-colored-text')
+
+		for (let spanElement of spanElements) {
+			spanElement.style.color = textColor
+		}
+
+		for (let bgColoredElement of bgColoredElements) {
+			bgColoredElement.style.backgroundColor = textBgColor
+		}
+
+		document.getElementById('bg-colored-logo').style.backgroundColor = textBgColor
+	}
 }
