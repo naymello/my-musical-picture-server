@@ -71,22 +71,23 @@ const countOccurrence = (arr) => {
 }
 
 //Mostra as imagens dos artistas, albuns ou músicas
-export const showImages = async (type, timeRange) => {
-	const data = await getUserTopMusic(type, timeRange)
-
-	if (type === 'artists') {
-		data.forEach(async (curr, i) => {
-			document.getElementById(`img-${i}`).src = await curr.images[0].url
-		})
-	}
-	else if (type === 'tracks') {
+export const showImages = async (type, data) => {
+	if (type === 'tracks') {
 		data.forEach(async (curr, i) => {
 			document.getElementById(`img-${i}`).src = await curr.album.images[0].url
+			console.log(curr)
 		})
 	}
 	else if (type === 'albums') {
 		data.forEach(async (curr, i) => {
 			document.getElementById(`img-${i}`).src = await curr.images[0].url
+			console.log(curr)
+		})
+	}
+	else if (type === 'artists') {
+		data.forEach(async (curr, i) => {
+			document.getElementById(`img-${i}`).src = await curr.images[0].url
+			console.log(curr)
 		})
 	}
 }
