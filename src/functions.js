@@ -104,21 +104,24 @@ export const showText = async (type, timeRange, firstName, data) => {
 	}
 
 	//Linhas adicionais
+
+	let firstResult = data[0]
+
 	if (type === 'tracks') {
-		document.getElementById('line-1').innerHTML = await (data[0].name).match(/^.*?(?= -)/)
+		document.getElementById('line-1').innerHTML = await (firstResult.name).match(/^.*?(?= -)/)
 		//RegEx para tirar tudo depois do '-', já que as informações como '- Remastered 2020' mais poluem do que são úteis
-		document.getElementById('line-2').innerHTML = await data[0].album.name
-		document.getElementById('line-3').innerHTML = await data[0].artists[0].name
+		document.getElementById('line-2').innerHTML = await firstResult.album.name
+		document.getElementById('line-3').innerHTML = await firstResult.artists[0].name
 	}
 	else if (type === 'albums') {
-		document.getElementById('line-1').innerHTML = await data[0].name
-		document.getElementById('line-2').innerHTML = await data[0].artists[0].name
-		document.getElementById('line-3').innerHTML = await (data[0].release_date).match(/^.*?(?=-)/) //Regex para pegar apenas o ano
+		document.getElementById('line-1').innerHTML = await firstResult.name
+		document.getElementById('line-2').innerHTML = await firstResult.artists[0].name
+		document.getElementById('line-3').innerHTML = await (firstResult.release_date).match(/^.*?(?=-)/) //Regex para pegar apenas o ano
 	}
 	else if (type === 'artists') {
-		document.getElementById('line-1').innerHTML = await data[0].name
-		document.getElementById('line-2').innerHTML = await data[0].genres[0]
-		document.getElementById('line-3').innerHTML = await data[0].genres[1]
+		document.getElementById('line-1').innerHTML = await firstResult.name
+		document.getElementById('line-2').innerHTML = await firstResult.genres[0]
+		document.getElementById('line-3').innerHTML = await firstResult.genres[1]
 	}
 
 	//Outros...
