@@ -12,35 +12,35 @@ const getData = async (type, timeRange, limit, offset) => {
 	})
 }
 
-//Pega os artistas ou músicas favoritas do usuário
-const getUserTop = async (type, timeRange) => {
-	let res = await getData(type, timeRange, 10, 0)
-	let data = await res.json()
-	return data.items
-}
-
-//Pega os albums favoritos do usuário
-//(com duas requisições à API no endpoint de "top tracks", já que a API não apresenta um endpoint 
-//próprio para pegar os dados de albuns favoritos)
-const getUserTopAlbums = async (timeRange) => {
-	let res1 = await getData('tracks', timeRange, 45, 0)
-	let res2 = await getData('tracks', timeRange, 45, 45)
-
-	let data1 = await res1.json()
-	let data2 = await res2.json()
-
-	let tracks = data1.items.concat(data2.items); //Junta o resutado de dois fetchs de tracks em uma só array
-
-	let albums = []
-
-	for (let i in tracks) { //Coloca todos os albums das tracks em uma array
-		albums[i] = tracks[i].album
+//Pega os artistas, albuns ou músicas favoritas do usuário
+const getUserTopMusic = async (type, timeRange) => {
+	if (!(type === 'albums')) {
+		let res = await getData(type, timeRange, 10, 0)
+		let data = await res.json()
+		return data.items
 	}
+	else {
+		//Pega albuns com duas requisições à API no endpoint de "top tracks", já que a API não apresenta um endpoint 
+		//próprio para pegar os dados de albuns favoritos
+		let res1 = await getData('tracks', timeRange, 45, 0)
+		let res2 = await getData('tracks', timeRange, 45, 45)
 
-	let countedAlbums = countOccurrence(albums)
-	let sortedAlbums = sortByMostListened(countedAlbums)
+		let data1 = await res1.json()
+		let data2 = await res2.json()
 
-	return sortedAlbums.slice(0, 10) //Retorna apenas os 10 albums mais ouvidos, que serão mostrados na tela
+		let tracks = data1.items.concat(data2.items); //Junta o resutado de dois fetchs de tracks em uma só array
+
+		let albums = []
+
+		for (let i in tracks) { //Coloca todos os albuns das tracks em uma array
+			albums[i] = tracks[i].album
+		}
+
+		let countedAlbums = countOccurrence(albums)
+		let sortedAlbums = sortByMostListened(countedAlbums)
+
+		return sortedAlbums.slice(0, 10) //Retorna apenas os 10 albuns mais ouvidos, que serão mostrados na tela
+	}
 }
 
 //Transforma de volta em uma array e organiza esta em ordem decrescente, comparando o número de ocorrência de cada album
@@ -70,28 +70,21 @@ const countOccurrence = (arr) => {
 	return uniqueArray;
 }
 
-//Mostra as imagens dos artistas, albums ou músicas
+//Mostra as imagens dos artistas, albuns ou músicas
 export const showImages = async (type, timeRange) => {
+	const data = await getUserTopMusic(type, timeRange)
 
-	//Albums não tem um endpoint próprio, portanto seus dados são pegos atravéz de uma função própria getUserTopAlbums
-	if (!(type === 'albums')) {
-		const data = await getUserTop(type, timeRange)
-
-		if (type === 'artists') {
-			data.forEach(async (curr, i) => {
-				document.getElementById(`img-${i}`).src = await curr.images[0].url
-			})
-		}
-		else if (type === 'tracks') {
-			data.forEach(async (curr, i) => {
-				document.getElementById(`img-${i}`).src = await curr.album.images[0].url
-			})
-		}
+	if (type === 'artists') {
+		data.forEach(async (curr, i) => {
+			document.getElementById(`img-${i}`).src = await curr.images[0].url
+		})
 	}
-
+	else if (type === 'tracks') {
+		data.forEach(async (curr, i) => {
+			document.getElementById(`img-${i}`).src = await curr.album.images[0].url
+		})
+	}
 	else if (type === 'albums') {
-		const data = await getUserTopAlbums(timeRange)
-
 		data.forEach(async (curr, i) => {
 			document.getElementById(`img-${i}`).src = await curr.images[0].url
 		})
