@@ -4,8 +4,8 @@ module.exports = {
 	mode: 'development',
 	watch: true,
 	entry: {
-		app: './src/app.js',
-		functions: './src/functions.js',
+		appSettings: './src/app-settings.js',
+		imageMaking: './src/image-maker.js',
 	},
 	output: {
 		path: path.resolve(__dirname, 'build'),
