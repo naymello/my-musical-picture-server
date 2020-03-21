@@ -13,7 +13,7 @@ const getData = async (type, timeRange, limit, offset) => {
 }
 
 //Pega os artistas, albuns ou músicas favoritas do usuário
-const getUserTopMusic = async (type, timeRange) => {
+export const getUserTopMusic = async (type, timeRange) => {
 	if (!(type === 'albums')) {
 		let res = await getData(type, timeRange, 10, 0)
 		let data = await res.json()
@@ -75,19 +75,52 @@ export const showImages = async (type, data) => {
 	if (type === 'tracks') {
 		data.forEach(async (curr, i) => {
 			document.getElementById(`img-${i}`).src = await curr.album.images[0].url
-			console.log(curr)
 		})
 	}
 	else if (type === 'albums') {
 		data.forEach(async (curr, i) => {
 			document.getElementById(`img-${i}`).src = await curr.images[0].url
-			console.log(curr)
 		})
 	}
 	else if (type === 'artists') {
 		data.forEach(async (curr, i) => {
 			document.getElementById(`img-${i}`).src = await curr.images[0].url
-			console.log(curr)
 		})
 	}
+}
+
+const showText = async (type, timeRange, firstName, data) => {
+	//Título
+	document.getElementById('name').innerHTML = `${firstName}'s `
+
+	if (timeRange === 'short') {
+		document.getElementById('type-title').innerHTML = `${type.slice(0, -1)} of the month`
+	}
+	else if (timeRange === 'medium') {
+		document.getElementById('type-title').innerHTML = `${type.slice(0, -1)} of the semester`
+	}
+	else if (timeRange === 'long') {
+		document.getElementById('type-title').innerHTML = `favorite ${type.slice(0, -1)}`
+	}
+
+	//Linhas adicionais
+	if (type === 'tracks') {
+		document.getElementById('line-1').innerHTML = await (data[0].name).match(/^.*?(?= -)/)
+		//RegEx para tirar tudo depois do '-', já que as informações como '- Remastered 2020' mais poluem do que são úteis
+		document.getElementById('line-2').innerHTML = await data[0].album.name
+		document.getElementById('line-3').innerHTML = await data[0].artists[0].name
+	}
+	else if (type === 'albums') {
+		document.getElementById('line-1').innerHTML = await data[0].name
+		document.getElementById('line-2').innerHTML = await data[0].artists[0].name
+		document.getElementById('line-3').innerHTML = await (data[0].release_date).match(/^.*?(?=-)/) //Regex para pegar apenas o ano
+	}
+	else if (type === 'artists') {
+		document.getElementById('line-1').innerHTML = await data[0].name
+		document.getElementById('line-2').innerHTML = await data[0].genres[0]
+		document.getElementById('line-3').innerHTML = await data[0].genres[1]
+	}
+
+	//Outros...
+	document.getElementById('others').innerHTML = `Other ${type}`
 }
