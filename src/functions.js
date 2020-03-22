@@ -76,17 +76,17 @@ const countOccurrence = (arr) => {
 export const showImages = async (type, data) => {
 	if (type === 'tracks') {
 		data.forEach(async (curr, i) => {
-			document.getElementById(`img-${i}`).src = await curr.album.images[0].url
+			document.getElementById(`img-${i}`).src = await curr.album.images[1].url
 		})
 	}
 	else if (type === 'albums') {
 		data.forEach(async (curr, i) => {
-			document.getElementById(`img-${i}`).src = await curr.images[0].url
+			document.getElementById(`img-${i}`).src = await curr.images[1].url
 		})
 	}
 	else if (type === 'artists') {
 		data.forEach(async (curr, i) => {
-			document.getElementById(`img-${i}`).src = await curr.images[0].url
+			document.getElementById(`img-${i}`).src = await curr.images[1].url
 		})
 	}
 }
