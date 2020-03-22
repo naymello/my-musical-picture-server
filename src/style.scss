@@ -1,3 +1,122 @@
+$margin: 10px;
+
 body {
-    background-color: black;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.artist-img {
+    width: 32%;
+}
+
+span {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
+
+header {
+    font-size: 20px;
+    margin: $margin*2;
+}
+
+#first-item {
+    display: grid;
+    grid-template-columns: 1fr 1.75fr;
+    margin: 0 $margin*2;
+}
+
+#img-0 {
+    width: 100%;
+}
+
+#side-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 $margin*2 $margin $margin;
+}
+
+#other-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    "title title title"
+    "album-1 album-2 album-3"
+    "album-4 album-5 album-6"
+    "album-7 album-8 album-9";
+    margin: $margin*2;
+}
+
+#others {
+    grid-area: title;
+    margin-bottom: $margin;
+}
+
+#img-1 {
+    grid-area: album-1;
+    width: 100%;
+}
+
+#img-2 {
+    grid-area: album-2;
+    width: 100%;
+}
+
+#img-3 {
+    grid-area: album-3;
+    width: 100%;    
+}
+
+#img-4 {
+    grid-area: album-4;
+    width: 100%;
+}
+
+#img-5 {
+    grid-area: album-5;
+    width: 100%;
+}
+
+#img-6 {
+    grid-area: album-6;
+    width: 100%;
+}
+
+#img-7 {
+    grid-area: album-7;
+    width: 100%;
+}
+
+#img-8 {
+    grid-area: album-8;
+    width: 100%;
+}
+
+#img-9 {
+    grid-area: album-9;
+    width: 100%;
+}
+
+.bg-colored-text {
+    background-color: #EEFF00;
+    padding: 0 2.5px 0 2.5px;
+}
+
+#bg-colored-logo {
+    background-color: #EEFF00;
+    padding: 0 30px 0 2.5px;
+}
+
+#logo {
+    font-size: 10px;
+    margin-left: $margin*2;
 }
