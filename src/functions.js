@@ -110,15 +110,18 @@ export const showText = async (type, timeRange, firstName, data) => {
 	let firstResult = data[0]
 
 	if (type === 'tracks') {
-		document.getElementById('line-1').innerHTML = await (firstResult.name).match(/^.*?(?= -)/)
-		//RegEx para tirar tudo depois do '-', já que as informações como '- Remastered 2020' mais poluem do que são úteis
+		//O limite para ser mostrado na imagem é de 40 caracteres. A regEx tem a função de tirar tudo que não faz parte do título da música 
+		//exemplo: - Remastered 2020).
+		document.getElementById('line-1').innerHTML = await firstResult.name.substring(0, 40).match(/^.*?(?= -)/) ?
+			firstResult.name.substring(0, 40).match(/^.*?(?= -)/) :
+			firstResult.name.substring(0, 40)
 		document.getElementById('line-2').innerHTML = await firstResult.album.name
 		document.getElementById('line-3').innerHTML = await firstResult.artists[0].name
 	}
 	else if (type === 'albums') {
 		document.getElementById('line-1').innerHTML = await firstResult.name
 		document.getElementById('line-2').innerHTML = await firstResult.artists[0].name
-		document.getElementById('line-3').innerHTML = await (firstResult.release_date).match(/^.*?(?=-)/) //Regex para pegar apenas o ano
+		document.getElementById('line-3').innerHTML = await firstResult.release_date.match(/^.*?(?=-)/) //RegEx para pegar apenas o ano
 	}
 	else if (type === 'artists') {
 		document.getElementById('line-1').innerHTML = await firstResult.name
