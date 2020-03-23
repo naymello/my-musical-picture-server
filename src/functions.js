@@ -18,7 +18,7 @@ export const getFirstName = async () => {
 }
 
 //Pega dados na API do Spotify
-const getData = async (type, timeRange, limit, offset) => {
+const getData = (type, timeRange, limit, offset) => {
 	return fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${timeRange}_term&limit=${limit}&offset=${offset}`, {
 		headers: {
 			Accept: "application/json",
