@@ -93,6 +93,12 @@ export const showImages = async (type, data) => {
 
 export const showText = async (type, timeRange, firstName, data) => {
 	//Título
+
+	//Diminui o tamanho do texto caso o nome seja grande
+	if (firstName.length >= 9) {
+		document.getElementsByTagName('header')[0].style.fontSize = '18px';
+	}
+
 	document.getElementById('name').innerHTML = `${firstName}'s `
 
 	if (timeRange === 'short') {
