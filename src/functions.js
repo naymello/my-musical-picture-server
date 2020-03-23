@@ -18,7 +18,7 @@ export const getFirstName = async () => {
 }
 
 //Pega dados na API do Spotify
-const getData = (type, timeRange, limit, offset) => {
+const getTopLists = (type, timeRange, limit, offset) => {
 	return fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${timeRange}_term&limit=${limit}&offset=${offset}`, {
 		headers: {
 			Accept: "application/json",
@@ -31,15 +31,15 @@ const getData = (type, timeRange, limit, offset) => {
 //Pega os artistas, albuns ou músicas favoritas do usuário
 export const getUserTopMusic = async (type, timeRange) => {
 	if (!(type === 'albums')) {
-		let res = await getData(type, timeRange, 10, 0)
+		let res = await getTopLists(type, timeRange, 10, 0)
 		let data = await res.json()
 		return data.items
 	}
 	else {
 		//Pega albuns com duas requisições à API no endpoint de "top tracks", já que a API não apresenta um endpoint 
 		//próprio para pegar os dados de albuns favoritos
-		let res1 = await getData('tracks', timeRange, 45, 0)
-		let res2 = await getData('tracks', timeRange, 45, 45)
+		let res1 = await getTopLists('tracks', timeRange, 45, 0)
+		let res2 = await getTopLists('tracks', timeRange, 45, 45)
 
 		let data1 = await res1.json()
 		let data2 = await res2.json()
