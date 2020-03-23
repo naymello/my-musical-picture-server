@@ -1,6 +1,22 @@
 let url = window.location
 let accessToken = new URLSearchParams(url.search).get('access_token')
 
+//Pega o primeiro nome do usuário
+export const getFirstName = async () => {
+	const res = await fetch('https://api.spotify.com/v1/me', {
+		headers: {
+			Accept: "application/json",
+			Authorization: `Bearer ${accessToken}`,
+			"Content-Type": "application/json"
+		}
+	})
+	const data = await res.json()
+	const displayName = data.display_name
+	const firstName = displayName.split(' ')[0]
+
+	return firstName
+}
+
 //Pega dados na API do Spotify
 const getData = async (type, timeRange, limit, offset) => {
 	return fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${timeRange}_term&limit=${limit}&offset=${offset}`, {
