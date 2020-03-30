@@ -3,17 +3,17 @@ import { getUserTopMusic, showImages, showText, setTheme, getFirstName } from '.
 import './style.scss'
 
 let firstName = ((async () => {
-    firstName = await getFirstName();
+  firstName = await getFirstName();
 })()).catch(console.error) //Await não pode ser usado no top-level
-const type = 'tracks'
-const timeRange = 'short'
-const theme = 'colored'
+const type = 'artists'
+const timeRange = 'long'
+const theme = 'dark'
 
 getUserTopMusic(type, timeRange)
-    .then(data => {
-        showImages(type, data)
-        showText(type, timeRange, firstName, data)
-    }, err => console.log(err))
+  .then(data => {
+    showImages(type, data)
+    showText(type, timeRange, firstName, data)
+  }, err => console.log(err))
 
 setTheme(theme)
 
