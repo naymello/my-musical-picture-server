@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<form id="my-form" action="http://localhost:8888/login">
+		<input type="radio" id="artists" value="artists" name="type" checked="true">
+		<label for="artists">Artists</label>
+		<input type="radio" id="albums" value="albums" name="type">
+		<label for="albums">Albums</label>
+		<input type="radio" id="tracks" value="tracks" name="type">
+		<label for="tracks">Songs</label>
+
+		<br><br>
+
+		<input type="radio" id="short" value="short" name="time-range" checked="true">
+		<label for="short">Last month</label>
+		<input type="radio" id="medium" value="medium" name="time-range">
+		<label for="medium">Last 6 months</label>
+		<input type="radio" id="long" value="long" name="time-range">
+		<label for="long">All data</label>
+
+		<br><br>
+
+		<input type="radio" id="light" value="light" name="theme" checked="true">
+		<label for="light">Light</label>
+		<input type="radio" id="dark" value="dark" name="theme">
+		<label for="dark">Dark</label>
+		<input type="radio" id="colored" value="colored" name="theme">
+		<label for="colored">Colored</label>
+
+		<br><br><br>
+
+		<input type="submit" value="Authorize and get image">
+	</form>
+
+	<script src="../build/appSettings.bundle.js"></script>
+</body>
+
+</html>
