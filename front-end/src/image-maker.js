@@ -1,6 +1,6 @@
 import './functions.js'
 import { getUserTopMusic, showImages, showText, setTheme, getFirstName } from './functions.js'
-import './style.scss'
+import './picture.scss'
 
 let firstName = ((async () => {
   firstName = await getFirstName();
