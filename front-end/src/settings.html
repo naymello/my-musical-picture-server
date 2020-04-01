@@ -8,6 +8,9 @@
 </head>
 
 <body>
+	<h2>Settings</h2>
+
+	<h3>Show data from:</h3>
 	<form id="my-form" action="http://localhost:8888/login">
 		<input type="radio" id="artists" value="artists" name="type" checked="true">
 		<label for="artists">Artists</label>
@@ -18,6 +21,7 @@
 
 		<br><br>
 
+		<h3>What data to show:</h3>
 		<input type="radio" id="short" value="short" name="time-range" checked="true">
 		<label for="short">Last month</label>
 		<input type="radio" id="medium" value="medium" name="time-range">
@@ -27,6 +31,7 @@
 
 		<br><br>
 
+		<h3>Picture theme:</h3>
 		<input type="radio" id="light" value="light" name="theme" checked="true">
 		<label for="light">Light</label>
 		<input type="radio" id="dark" value="dark" name="theme">
@@ -36,7 +41,7 @@
 
 		<br><br><br>
 
-		<input type="submit" value="Authorize and get image">
+		<input type="submit" value="Get picture">
 	</form>
 
 	<script src="../build/appSettings.bundle.js"></script>
