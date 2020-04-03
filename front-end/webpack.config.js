@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     appSettings: './src/app-settings.js',
     imageMaking: './src/image-maker.js',
+    landing: './src/landing.js'
   },
   output: {
     path: path.resolve(__dirname, 'build'),
