@@ -12,6 +12,8 @@ body {
 
 nav {
   display: flex;
+  height: 14vh;
+  transition: height .35s;
 
   img {
     margin: $margin 15px;
@@ -25,6 +27,19 @@ nav {
 
   ul, li a {
     display: none;
+  }
+
+  .hamburger {
+    cursor: pointer;
+    margin: $margin * 1.5;
+    margin-left: auto;
+
+    .line {
+      background-color: #000;
+      width: 30px;
+      height: 3px;
+      margin-top: 5px;
+    }
   }
 }
 
