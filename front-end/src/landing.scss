@@ -1,4 +1,5 @@
 $margin: 20px;
+$nav-height: 12.5vh;
 
 html {
   font-size: 62.5%;
@@ -8,37 +9,86 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 nav {
   display: flex;
-  height: 14vh;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #FFF;
+  height: $nav-height;
+  z-index: 2;
   transition: height .35s;
+  
+  &.active {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   img {
-    margin: $margin 15px;
-    width: 70px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 65px;
+    height: 50px;
   }
 
-  span {
-    font-size: 1.6rem;
-    font-weight: 700;
-  }
-
-  ul, li a {
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    pointer-events: none;
     display: none;
+
+    &.active {
+      display: block;
+    }
+
+    li {
+      margin: $margin;
+      font-size: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: #EEFF00;
+      padding: 7.5px 10px;
+      text-align: center;
+      
+      a {
+        text-decoration: none;
+        color: #000;
+      } 
+    } 
   }
 
   .hamburger {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    height: 10px;
     cursor: pointer;
-    margin: $margin * 1.5;
-    margin-left: auto;
-
+    
     .line {
+      transition: transform .25s;
       background-color: #000;
       width: 30px;
       height: 3px;
       margin-top: 5px;
+    }
+  }
+
+  &.active {
+    .line:first-child {
+      transform: translateY(4px) translateX(0) rotate(45deg);
+    }
+  
+    .line:last-child {
+      transform: translateY(-4px) translateX(0) rotate(-45deg);
     }
   }
 }
@@ -50,6 +100,7 @@ nav {
 
 header {
   margin: $margin;
+  padding-top: $nav-height;
   font-size: 2.6rem;
   font-weight: 700;
   line-height: 35px;
@@ -88,6 +139,7 @@ button {
   cursor: pointer;
   margin: $margin;
   border: none;
+  outline: none;
   background-color: #EEFF00;
   width: calc(100% - 40px);
   
