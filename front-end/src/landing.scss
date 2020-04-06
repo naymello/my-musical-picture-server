@@ -82,11 +82,11 @@ nav {
     }
 
     &.active {
-      &:first-child {
+      .line:first-child {
         transform: translateY(4px) translateX(0) rotate(45deg);
       }
     
-      &:last-child {
+      .line:last-child {
         transform: translateY(-4px) translateX(0) rotate(-45deg);
       }
     }
@@ -107,7 +107,7 @@ header {
 }
 
 section {
-  margin: $margin;
+  margin: $margin*3 $margin;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
   grid-template-rows: 1fr 1fr 10fr 1fr 1fr;
