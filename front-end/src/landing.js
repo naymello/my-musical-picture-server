@@ -4,7 +4,6 @@ const navButton = document.querySelector('.hamburger')
 const [nav] = document.getElementsByTagName('nav')
 const [ul] = document.getElementsByTagName('ul')
 const [body] = document.getElementsByTagName('body')
-const logo = document.getElementById('logo')
 
 navButton.addEventListener('click', () => {
   navButton.classList.toggle('active')

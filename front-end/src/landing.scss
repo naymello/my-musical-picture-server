@@ -80,15 +80,15 @@ nav {
       height: 3px;
       margin-top: 5px;
     }
-  }
 
-  &.active {
-    .line:first-child {
-      transform: translateY(4px) translateX(0) rotate(45deg);
-    }
-  
-    .line:last-child {
-      transform: translateY(-4px) translateX(0) rotate(-45deg);
+    &.active {
+      &:first-child {
+        transform: translateY(4px) translateX(0) rotate(45deg);
+      }
+    
+      &:last-child {
+        transform: translateY(-4px) translateX(0) rotate(-45deg);
+      }
     }
   }
 }
@@ -107,11 +107,11 @@ header {
 }
 
 section {
-  margin: 0 $margin;
+  margin: $margin;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
   grid-template-rows: 1fr 1fr 10fr 1fr 1fr;
-  height: 50vh;
+  height: 100%;
   
   img {
     width: 100%;
