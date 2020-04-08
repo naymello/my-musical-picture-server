@@ -3,6 +3,8 @@ let request = require('request')
 let querystring = require('querystring')
 require('dotenv').config()
 
+const apiRequests = require('./requests')
+
 let app = express()
 
 let redirect_uri =
@@ -40,6 +42,16 @@ app.get('/callback', function (req, res) {
     let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
     res.redirect(uri + '?access_token=' + access_token)
   })
+})
+
+app.get('/topmusic', async (req, res) => {
+  const userTopMusic = await apiRequests.getUserTopMusic('artists', 'long')
+  res.json(userTopMusic)
+})
+
+app.get('/name', async (req, res) => {
+  const userFirstName = await apiRequests.getFirstName()
+  res.json(userFirstName)
 })
 
 let port = process.env.PORT || 8888
