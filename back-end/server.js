@@ -13,6 +13,10 @@ const redirect_uri =
 
 app.use('/', express.static('../front-end'))
 
+app.use('/settings', express.static('../front-end/src/settings.html'))
+
+app.use('/picture', express.static('../front-endsrc/picture.html'))
+
 app.get('/login', (req, res) => {
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
