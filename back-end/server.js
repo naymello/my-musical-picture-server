@@ -11,6 +11,8 @@ const redirect_uri =
   process.env.REDIRECT_URI ||
   'http://localhost:8888/callback'
 
+app.use('/', express.static('../front-end'))
+
 app.get('/login', (req, res) => {
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
