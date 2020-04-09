@@ -52,7 +52,7 @@ app.get('/callback', (req, res) => {
 
 app.get('/topmusic', async (req, res) => {
   const type = req.query.type
-  const timeRange = req.query.timeRange
+  const timeRange = req.query.time_range
 
   const userTopMusic = await apiRequests.getUserTopMusic(type, timeRange)
   res.json(userTopMusic)
