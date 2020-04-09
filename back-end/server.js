@@ -15,7 +15,7 @@ app.use('/', express.static('../front-end'))
 
 app.use('/settings', express.static('../front-end/src/settings.html'))
 
-app.use('/picture', express.static('../front-endsrc/picture.html'))
+app.use('/picture', express.static('../front-end/src/picture.html'))
 
 app.get('/login', (req, res) => {
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -51,7 +51,10 @@ app.get('/callback', (req, res) => {
 })
 
 app.get('/topmusic', async (req, res) => {
-  const userTopMusic = await apiRequests.getUserTopMusic('artists', 'long')
+  const type = req.query.type
+  const timeRange = req.query.timeRange
+
+  const userTopMusic = await apiRequests.getUserTopMusic(type, timeRange)
   res.json(userTopMusic)
 })
 
