@@ -67,7 +67,7 @@ export const showText = async (type, timeRange, firstName, data) => {
   document.getElementById('others').innerHTML = `Other ${type}`
 }
 
-export const setTheme = (theme) => {
+export const showTheme = (theme) => {
   //O tema claro (light) já é o padrão dentro do styles.scss, então não são necessárias mudanças
   if (theme !== 'light') {
     let textColor = ''
