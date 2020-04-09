@@ -1,19 +1,22 @@
-import './functions.js'
-import { getUserTopMusic, showImages, showText, setTheme, getFirstName } from './functions.js'
+import { showImages, showText, showTheme } from './functions.js'
 import './picture.scss'
 
-let firstName = ((async () => {
-  firstName = await getFirstName();
-})()).catch(console.error) //Await não pode ser usado no top-level
-const type = 'artists'
-const timeRange = 'long'
-const theme = 'dark'
+const url = window.location
 
-getUserTopMusic(type, timeRange)
-  .then(data => {
-    showImages(type, data)
-    showText(type, timeRange, firstName, data)
-  }, err => console.log(err))
+const type = new URLSearchParams(url.search).get('type')
+const timeRange = new URLSearchParams(url.search).get('timeRange')
+const theme = new URLSearchParams(url.search).get('theme')
 
-setTheme(theme)
+const makeImage = async () => {
+  const topMusicRes = await fetch(`/topmusic?type=${type}&timeRange=${timeRange}`)
+  const userTopMusic = await topMusicRes.json()
 
+  const firstNameRes = await fetch('/name')
+  const userFirstName = await firstNameRes.json()
+
+  showImages(type, userTopMusic)
+  showText(type, timeRange, userFirstName, userTopMusic)
+  showTheme(theme)
+}
+
+makeImage()
