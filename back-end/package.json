@@ -22,9 +22,7 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.0",
     "querystring": "~0.2.0",
-    "request": "^2.88.2"
-  },
-  "devDependencies": {
+    "request": "^2.88.2",
     "node-fetch": "^2.6.0"
   }
 }
