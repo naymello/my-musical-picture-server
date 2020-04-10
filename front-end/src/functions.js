@@ -18,14 +18,17 @@ export const showImages = async (type, data) => {
 }
 
 export const showText = async (type, timeRange, firstName, data) => {
+  const domName = document.getElementById('name')
+  const typeTitle = document.getElementById('type-title')
+  const line1 = document.getElementById('line-1')
+  const line2 = document.getElementById('line-2')
+  const line3 = document.getElementById('line-3')
+  const othersText = document.getElementById('others')
 
   //Diminui o tamanho do título caso o nome seja grande
   if (firstName.length >= 9) {
     document.getElementsByTagName('header')[0].style.fontSize = '18px'
   }
-
-  const domName = document.getElementById('name')
-  const typeTitle = document.getElementById('type-title')
 
   domName.innerHTML = `${firstName}'s `
 
@@ -46,33 +49,29 @@ export const showText = async (type, timeRange, firstName, data) => {
   if (type === 'tracks') {
     //O limite para ser mostrado na imagem é de 40 caracteres. A regEx tem a função de tirar tudo que não faz parte do título da música 
     //exemplo: - Remastered 2020).
-    document.getElementById('line-1').innerHTML = await firstResult.name.substring(0, 40).match(/^.*?(?= -)/) ?
-      firstResult.name.substring(0, 40).match(/^.*?(?= -)/) :
-      firstResult.name.substring(0, 40)
-    document.getElementById('line-2').innerHTML = await firstResult.album.name
-    document.getElementById('line-3').innerHTML = await firstResult.artists[0].name
+    line1.innerHTML = await firstResult.name.substring(0, 40).match(/^.*?(?= -)/) || firstResult.name.substring(0, 40)
+    line2.innerHTML = await firstResult.album.name
+    line3.innerHTML = await firstResult.artists[0].name
   }
   else if (type === 'albums') {
-    document.getElementById('line-1').innerHTML = await firstResult.name
-    document.getElementById('line-2').innerHTML = await firstResult.artists[0].name
-    document.getElementById('line-3').innerHTML = await firstResult.release_date.match(/^.*?(?=-)/) //RegEx para pegar apenas o ano
+    line1.innerHTML = await firstResult.name
+    line2.innerHTML = await firstResult.artists[0].name
+    line3.innerHTML = await firstResult.release_date.match(/^.*?(?=-)/) //RegEx para pegar apenas o ano
   }
   else if (type === 'artists') {
-    document.getElementById('line-1').innerHTML = await firstResult.name
-    document.getElementById('line-2').innerHTML = await firstResult.genres[0]
-    document.getElementById('line-3').innerHTML = await firstResult.genres[1]
+    line1.innerHTML = await firstResult.name
+    line2.innerHTML = await firstResult.genres[0]
+    line3.innerHTML = await firstResult.genres[1]
   }
 
   //Outros...
-  document.getElementById('others').innerHTML = `Other ${type}`
+  othersText.innerHTML = `Other ${type}`
 }
 
 export const showTheme = (theme) => {
   //O tema claro (light) já é o padrão dentro do styles.scss, então não são necessárias mudanças
   if (theme !== 'light') {
-    let textColor = ''
-    let textBgColor = ''
-    let bodyBgColor = ''
+    let textColor, textBgColor, bodyBgColor
 
     if (theme === 'dark') {
       textColor = '#FFFFFF'
