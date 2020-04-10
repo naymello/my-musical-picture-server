@@ -4,7 +4,6 @@ module.exports = {
   mode: 'development',
   watch: true,
   entry: {
-    appSettings: './src/app-settings.js',
     imageMaking: './src/image-maker.js',
     landing: './src/landing.js'
   },
