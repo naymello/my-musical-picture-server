@@ -1,7 +1,11 @@
 const fetch = require('node-fetch')
+const serverData = require('./server')
 
-let url = window.location
-let accessToken = new URLSearchParams(url.search).get('access_token')
+let accessToken
+
+const setAccessToken = () => {
+  accessToken = serverData.access_token
+}
 
 /*******
  * Funções de fetch na API
@@ -104,3 +108,7 @@ const sortByMostListened = (arr) => {
 
   return sortedArr
 }
+
+exports.getFirstName = getFirstName
+exports.getUserTopMusic = getUserTopMusic
+exports.setAccessToken = setAccessToken
