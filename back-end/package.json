@@ -4,7 +4,7 @@
   "description": "Um site que faz imagens baseadas no histórico musical de quem o visita",
   "main": "app-settings.js",
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
