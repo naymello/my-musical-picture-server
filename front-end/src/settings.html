@@ -2,46 +2,46 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
-	<title>Settings</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+  <title>Settings</title>
 </head>
 
 <body>
-	<div class="container">
-		<h2>Settings</h2>
+  <div class="container">
+    <h2>Settings</h2>
 
-		<form method="GET" action="/picture">
-			<h3>What data to show:</h3>
-			<input type="radio" id="artists" value="artists" name="type" checked="true">
-			<label for="artists">Artists</label>
-			<input type="radio" id="albums" value="albums" name="type">
-			<label for="albums">Albums</label>
-			<input type="radio" id="tracks" value="tracks" name="type">
-			<label for="tracks">Songs</label>
+    <form method="GET" action="/picture">
+      <h3>What data to show:</h3>
+      <input type="radio" id="artists" value="artists" name="type" checked="true">
+      <label for="artists">Artists</label>
+      <input type="radio" id="albums" value="albums" name="type">
+      <label for="albums">Albums</label>
+      <input type="radio" id="tracks" value="tracks" name="type">
+      <label for="tracks">Songs</label>
 
-			<h3>Show data from:</h3>
-			<input type="radio" id="short" value="short" name="time_range" checked="true">
-			<label for="short">Month</label>
-			<input type="radio" id="medium" value="medium" name="time_range">
-			<label for="medium">Semester</label>
-			<input type="radio" id="long" value="long" name="time_range">
-			<label for="long">All time</label>
+      <h3>Show data from:</h3>
+      <input type="radio" id="short" value="short" name="time_range" checked="true">
+      <label for="short">Month</label>
+      <input type="radio" id="medium" value="medium" name="time_range">
+      <label for="medium">Semester</label>
+      <input type="radio" id="long" value="long" name="time_range">
+      <label for="long">All time</label>
 
-			<h3>Picture theme:</h3>
-			<input type="radio" id="light" value="light" name="theme" checked="true">
-			<label for="light">Light</label>
-			<input type="radio" id="dark" value="dark" name="theme">
-			<label for="dark">Dark</label>
-			<input type="radio" id="colored" value="colored" name="theme">
-			<label for="colored">Colored</label>
+      <h3>Picture theme:</h3>
+      <input type="radio" id="light" value="light" name="theme" checked="true">
+      <label for="light">Light</label>
+      <input type="radio" id="dark" value="dark" name="theme">
+      <label for="dark">Dark</label>
+      <input type="radio" id="colored" value="colored" name="theme">
+      <label for="colored">Colored</label>
 
-			<input type="submit" value="Get picture">
-		</form>
-	</div>
+      <input type="submit" value="Get picture">
+    </form>
+  </div>
 
-	<script src="../build/appSettings.bundle.js"></script>
+  <script src="../build/appSettings.bundle.js"></script>
 </body>
 
 </html>

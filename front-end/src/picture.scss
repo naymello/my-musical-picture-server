@@ -1,125 +1,124 @@
 body {
-	margin: 0;
-	padding: 0;
-	font-family: 'Poppins', sans-serif;
-	background-color: #222222;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #222222;
 }
 
 .picture {
-	padding: 20px;
-	margin: 0;
-	background-color: white;
-	width: 375px;
-	height: 667px;
-	box-sizing: border-box;
+  padding: 20px;
+  margin: 0;
+  background-color: white;
+  width: 375px;
+  height: 667px;
+  box-sizing: border-box;
 }
 
 .bold {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .semi-bold {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 span {
-	color: black;
+  color: black;
 }
 
 header {
-	font-size: 20px;
-	margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 #first-item {
-	display: grid;
-	grid-template-columns: 1fr 1.75fr;
-	margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.75fr;
+  margin-bottom: 20px;
 }
 
 #img-0 {
-	width: 100%;
+  width: 100%;
 }
 
 #side-text {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 15px;
 }
 
 #other-items {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-areas:
-	"title title title"
-	"album-1 album-2 album-3"
-	"album-4 album-5 album-6"
-	"album-7 album-8 album-9";
-	width: 335px;
-	margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+  "title title title"
+  "album-1 album-2 album-3"
+  "album-4 album-5 album-6"
+  "album-7 album-8 album-9";
+  width: 335px;
+  margin-bottom: 20px;
 }
 
 #others {
-	grid-area: title;
-	//margin-bottom: 5px;
+  grid-area: title;
 }
 
 #img-1 {
-	grid-area: album-1;
-	width: 100%;
+  grid-area: album-1;
+  width: 100%;
 }
 
 #img-2 {
-	grid-area: album-2;
-	width: 100%;
+  grid-area: album-2;
+  width: 100%;
 }
 
 #img-3 {
-	grid-area: album-3;
-	width: 100%;    
+  grid-area: album-3;
+  width: 100%;    
 }
 
 #img-4 {
-	grid-area: album-4;
-	width: 100%;
+  grid-area: album-4;
+  width: 100%;
 }
 
 #img-5 {
-	grid-area: album-5;
-	width: 100%;
+  grid-area: album-5;
+  width: 100%;
 }
 
 #img-6 {
-	grid-area: album-6;
-	width: 100%;
+  grid-area: album-6;
+  width: 100%;
 }
 
 #img-7 {
-	grid-area: album-7;
-	width: 100%;
+  grid-area: album-7;
+  width: 100%;
 }
 
 #img-8 {
-	grid-area: album-8;
-	width: 100%;
+  grid-area: album-8;
+  width: 100%;
 }
 
 #img-9 {
-	grid-area: album-9;
-	width: 100%;
+  grid-area: album-9;
+  width: 100%;
 }
 
 .bg-colored-text {
-	background-color: #EEFF00;
-	padding: 0 2.5px 0 2.5px;
+  background-color: #EEFF00;
+  padding: 0 2.5px 0 2.5px;
 }
 
 #bg-colored-logo {
-	background-color: #EEFF00;
-	padding: 0 30px 0 2.5px;
+  background-color: #EEFF00;
+  padding: 0 30px 0 2.5px;
 }
 
 #logo {
-	font-size: 10px;
+  font-size: 10px;
 }
