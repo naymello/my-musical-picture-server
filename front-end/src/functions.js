@@ -84,7 +84,7 @@ export const showTheme = (theme) => {
       bodyBgColor = '#2929B1'
     }
 
-    document.body.style.backgroundColor = bodyBgColor
+    document.querySelector('.picture').style.backgroundColor = bodyBgColor
 
     const spanElements = document.getElementsByTagName('span')
     const bgColoredElements = document.getElementsByClassName('bg-colored-text')
