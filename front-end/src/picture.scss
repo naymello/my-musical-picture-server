@@ -1,10 +1,19 @@
-$margin: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 body {
 	margin: 0;
 	padding: 0;
-	background-color: white;
 	font-family: 'Poppins', sans-serif;
+	background-color: #222222;
+}
+
+.picture {
+	padding: 20px;
+	margin: 0;
+	background-color: white;
+	width: 375px;
+	height: 667px;
+	box-sizing: border-box;
 }
 
 .bold {
@@ -15,23 +24,19 @@ body {
 	font-weight: 600;
 }
 
-.artist-img {
-	width: 32%;
-}
-
 span {
 	color: black;
 }
 
 header {
 	font-size: 20px;
-	margin: $margin*2;
+	margin-bottom: 20px;
 }
 
 #first-item {
 	display: grid;
 	grid-template-columns: 1fr 1.75fr;
-	margin: 0 $margin*2;
+	margin-bottom: 20px;
 }
 
 #img-0 {
@@ -42,7 +47,7 @@ header {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	margin: 0 $margin*2 $margin $margin;
+	margin-left: 15px;
 }
 
 #other-items {
@@ -53,12 +58,13 @@ header {
 	"album-1 album-2 album-3"
 	"album-4 album-5 album-6"
 	"album-7 album-8 album-9";
-	margin: $margin*2;
+	width: 335px;
+	margin-bottom: 20px;
 }
 
 #others {
 	grid-area: title;
-	margin-bottom: $margin;
+	//margin-bottom: 5px;
 }
 
 #img-1 {
@@ -118,5 +124,4 @@ header {
 
 #logo {
 	font-size: 10px;
-	margin-left: $margin*2;
 }
