@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/naymello/my-musical-picure.git"
+    "url": "git+https://github.com/naymello/my-musical-picture.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/naymello/my-musical-picure/issues"
+    "url": "https://github.com/naymello/my-musical-picture/issues"
   },
-  "homepage": "https://github.com/naymello/my-musical-picure#readme",
+  "homepage": "https://github.com/naymello/my-musical-picture#readme",
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.4",
