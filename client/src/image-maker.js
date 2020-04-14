@@ -15,6 +15,15 @@ const makeImage = async () => {
   const firstNameRes = await fetch('/name')
   const userFirstName = await firstNameRes.json()
 
+  if ((!userTopMusic[9]) && (timeRange !== 'long')) {
+    alert('There\'s no enough data in this time range to make the picture. Try selecting a longer time range (e.g. \'All time\').')
+    return window.history.back()
+  }
+  else if ((!userTopMusic[9]) && (timeRange === 'long')) {
+    alert('There\'s no enough data in this Spotify account to make the picture.')
+    return window.location = '/'
+  }
+
   showImages(type, userTopMusic)
   showText(type, timeRange, userFirstName, userTopMusic)
   showTheme(theme)
