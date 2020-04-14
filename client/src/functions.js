@@ -78,17 +78,17 @@ export const showCaption = async (type, data) => {
 
   if (type === 'tracks') {
     for (let i = 0; i < musicNames.length; i++) {
-      musicNames[i].innerHTML = data[i].name.substring(0, 20)
+      musicNames[i].innerHTML = data[i].name.substring(0, 25)
     }
   }
   else if (type === 'albums') {
     for (let i = 0; i < musicNames.length; i++) {
-      musicNames[i].innerHTML = data[i].name.substring(0, 20)
+      musicNames[i].innerHTML = data[i].name.substring(0, 25)
     }
   }
   else if (type === 'artists') {
     for (let i = 0; i < musicNames.length; i++) {
-      musicNames[i].innerHTML = data[i].name.substring(0, 20)
+      musicNames[i].innerHTML = data[i].name.substring(0, 25)
     }
   }
 }
