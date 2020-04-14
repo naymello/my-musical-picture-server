@@ -78,7 +78,7 @@ export const showCaption = async (type, data) => {
 
   if (type === 'tracks') {
     for (let i = 0; i < musicNames.length; i++) {
-      musicNames[i].innerHTML = data[i].name.substring(0, 25)
+      musicNames[i].innerHTML = data[i].name.substring(0, 25).match(/^.*?(?= -)/) || data[i].name.substring(0, 25)
     }
   }
   else if (type === 'albums') {
