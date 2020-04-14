@@ -64,9 +64,26 @@ header {
   grid-area: title;
 }
 
+.music-name {
+  position: relative;
+  top: 85%;
+  background-color: #EEFF00;
+  width: 100%;
+  height: 15%;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2.5px;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
 #img-1 {
   grid-area: album-1;
   width: 100%;
+}
+
+#name-1 {
+  grid-area: album-1;
 }
 
 #img-2 {
@@ -74,9 +91,17 @@ header {
   width: 100%;
 }
 
+#name-2 {
+  grid-area: album-2;
+}
+
 #img-3 {
   grid-area: album-3;
-  width: 100%;    
+  width: 100%;
+}
+
+#name-3 {
+  grid-area: album-3;
 }
 
 #img-4 {
@@ -84,9 +109,17 @@ header {
   width: 100%;
 }
 
+#name-4 {
+  grid-area: album-4;
+}
+
 #img-5 {
   grid-area: album-5;
   width: 100%;
+}
+
+#name-5 {
+  grid-area: album-5;
 }
 
 #img-6 {
@@ -94,9 +127,17 @@ header {
   width: 100%;
 }
 
+#name-6 {
+  grid-area: album-6;
+}
+
 #img-7 {
   grid-area: album-7;
   width: 100%;
+}
+
+#name-7 {
+  grid-area: album-7;
 }
 
 #img-8 {
@@ -104,9 +145,17 @@ header {
   width: 100%;
 }
 
+#name-8 {
+  grid-area: album-8;
+}
+
 #img-9 {
   grid-area: album-9;
   width: 100%;
+}
+
+#name-9 {
+  grid-area: album-9;
 }
 
 .bg-colored-text {

@@ -68,6 +68,31 @@ export const showText = async (type, timeRange, firstName, data) => {
   othersText.innerHTML = `Other ${type}`
 }
 
+export const showCaption = async (type, data) => {
+  const musicNames = document.getElementsByClassName('music-name')
+  data.shift() //O primeiro item não tem legenda opcional
+
+  for (let musicName of musicNames) {
+    musicName.style.opacity = 1
+  }
+
+  if (type === 'tracks') {
+    for (let i = 0; i < musicNames.length; i++) {
+      musicNames[i].innerHTML = data[i].name.substring(0, 20)
+    }
+  }
+  else if (type === 'albums') {
+    for (let i = 0; i < musicNames.length; i++) {
+      musicNames[i].innerHTML = data[i].name.substring(0, 20)
+    }
+  }
+  else if (type === 'artists') {
+    for (let i = 0; i < musicNames.length; i++) {
+      musicNames[i].innerHTML = data[i].name.substring(0, 20)
+    }
+  }
+}
+
 export const showTheme = (theme) => {
   //O tema claro (light) já é o padrão dentro do styles.scss, então não são necessárias mudanças
   if (theme !== 'light') {
@@ -88,6 +113,7 @@ export const showTheme = (theme) => {
 
     const spanElements = document.getElementsByTagName('span')
     const bgColoredElements = document.getElementsByClassName('bg-colored-text')
+    const musicNames = document.getElementsByClassName('music-name')
 
     for (let spanElement of spanElements) {
       spanElement.style.color = textColor
@@ -95,6 +121,11 @@ export const showTheme = (theme) => {
 
     for (let bgColoredElement of bgColoredElements) {
       bgColoredElement.style.backgroundColor = textBgColor
+    }
+
+    for (let musicName of musicNames) {
+      musicName.style.backgroundColor = textBgColor
+      musicName.style.color = textColor
     }
 
     document.getElementById('bg-colored-logo').style.backgroundColor = textBgColor
