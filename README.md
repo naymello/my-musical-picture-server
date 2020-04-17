@@ -1,8 +1,8 @@
 # My Musical Picture
 
-<img src="https://i.imgur.com/IyMnFad.png" width="300px">
-<img src="https://i.imgur.com/YzjHEW1.png" width="300px">
-<img src="https://i.imgur.com/lKMSjWw.png" width="300px">
+<img src="https://i.imgur.com/IyMnFad.png" width="275px">
+<img src="https://i.imgur.com/YzjHEW1.png" width="275px">
+<img src="https://i.imgur.com/lKMSjWw.png" width="275px">
 
 ## O que é?
 
