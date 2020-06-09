@@ -4,8 +4,8 @@
   "description": "Back-end da aplicação web My Musical Picture",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon server",
-    "prod": "node server"
+    "dev": "nodemon src/server.js",
+    "prod": "node src/server.js"
   },
   "repository": {
     "type": "git",
