@@ -1,8 +1,8 @@
 {
   "name": "my-musical-picture-server",
   "version": "1.0.0",
-  "description": "Um site que faz imagens baseadas no histórico musical de quem o visita",
-  "main": "app-settings.js",
+  "description": "Back-end da aplicação web My Musical Picture",
+  "main": "src/server.js",
   "scripts": {
     "dev": "nodemon server",
     "prod": "node server"
