@@ -63,7 +63,7 @@ const getUserTopMusic = async (type, timeRange) => {
     let data1 = await res1.json()
     let data2 = await res2.json()
 
-    let tracks = data1.items.concat(data2.items) //Junta o resutado de dois fetchs de tracks em uma só array
+    let tracks = [...data1.items, ...data2.items] //Junta o resutado de dois fetchs de tracks em uma só array
 
     let albums = []
 
