@@ -41,22 +41,22 @@ app.get('/callback', (req, res) => {
     const access_token = body.access_token
     const uri = process.env.FRONTEND_URI || 'http://localhost:3000'
     res.redirect(uri + '?access_token=' + access_token)
-
-    exports.access_token = access_token
-    apiRequests.setAccessToken()
   })
 })
 
 app.get('/topmusic', async (req, res) => {
+  const accessToken = req.query.access_token
   const type = req.query.type
   const timeRange = req.query.time_range
 
-  const userTopMusic = await apiRequests.getUserTopMusic(type, timeRange)
+  const userTopMusic = await apiRequests.getUserTopMusic(accessToken, type, timeRange)
   res.json(userTopMusic)
 })
 
 app.get('/name', async (req, res) => {
-  const userFirstName = await apiRequests.getFirstName()
+  const accessToken = req.query.access_token
+
+  const userFirstName = await apiRequests.getFirstName(accessToken)
   res.json(userFirstName)
 })
 
