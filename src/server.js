@@ -1,11 +1,17 @@
 const express = require('express')
 const request = require('request')
+const cors = require('cors')
 const querystring = require('querystring')
 require('dotenv').config()
 
 const apiRequests = require('./requests')
 
 const app = express()
+
+const corsOptions = {
+  origin: 'http://my-musical-picture.netlify.app/',
+  optionsSuccessStatus: 200
+}
 
 const redirect_uri =
   process.env.REDIRECT_URI ||
@@ -44,7 +50,7 @@ app.get('/callback', (req, res) => {
   })
 })
 
-app.get('/topmusic', async (req, res) => {
+app.get('/topmusic', cors(corsOptions), async (req, res) => {
   const accessToken = req.query.access_token
   const type = req.query.type
   const timeRange = req.query.time_range
@@ -53,7 +59,7 @@ app.get('/topmusic', async (req, res) => {
   res.json(userTopMusic)
 })
 
-app.get('/name', async (req, res) => {
+app.get('/name', cors(corsOptions), async (req, res) => {
   const accessToken = req.query.access_token
 
   const userFirstName = await apiRequests.getFirstName(accessToken)
