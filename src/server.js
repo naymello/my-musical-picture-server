@@ -9,7 +9,7 @@ const apiRequests = require('./requests')
 const app = express()
 
 const corsOptions = {
-  origin: 'http://my-musical-picture.netlify.app/',
+  origin: 'https://my-musical-picture.netlify.app',
   optionsSuccessStatus: 200
 }
 
